@@ -53,14 +53,14 @@ module Siru
     
     def self.build(options = {})
       config = Config.load
-      site = Site.new(config)
+      site = Site.new(config, options)
       builder = Builder.new(site, options)
       builder.build
     end
     
     def self.serve(options = {})
       config = Config.load
-      site = Site.new(config)
+      site = Site.new(config, options)
       server = Server.new(site, options)
       server.start
     end

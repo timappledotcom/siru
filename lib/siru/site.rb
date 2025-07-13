@@ -2,8 +2,9 @@ module Siru
   class Site
     attr_reader :config, :posts, :theme
     
-    def initialize(config)
+    def initialize(config, options = {})
       @config = config
+      @options = options
       @theme = Theme.new(config['theme'])
       @posts = load_posts
     end
@@ -34,7 +35,10 @@ module Siru
       
       Dir.glob(File.join(content_dir, '**', '*.md')).each do |file|
         post = Post.new(file)
-        posts << post unless post.draft?
+        # Include drafts if --draft option is set
+        if @options[:draft] || !post.draft?
+          posts << post
+        end
       end
       
       posts.sort_by(&:date).reverse

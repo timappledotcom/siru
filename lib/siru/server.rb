@@ -43,7 +43,7 @@ module Siru
         
         # Reload site configuration and rebuild
         config = Config.load
-        @site = Site.new(config)
+        @site = Site.new(config, @options)
         builder = Builder.new(@site, @options)
         builder.build
         
