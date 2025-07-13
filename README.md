@@ -153,11 +153,26 @@ summary: "A brief summary of the post"
 
 ### Available Front Matter Fields
 - `title`: Post/page title
-- `date`: Publication date
+- `date`: Publication date (supports both date and datetime formats)
 - `draft`: Whether the content is a draft (true/false)
 - `tags`: Array of tags for the post
 - `summary`: Brief description (used in post lists)
 - `slug`: Custom URL slug (optional)
+
+#### Date and Time Support
+
+Siru supports both date-only and datetime formats for the `date` field:
+
+```toml
+# Date only
+date = "2025-07-14"
+
+# Date with time
+date = "2025-07-14T14:30:00"
+date = "2025-07-14 14:30:00"
+```
+
+When using datetime format, the time component is preserved and can be used for sorting posts and displaying in themes.
 
 ## License
 

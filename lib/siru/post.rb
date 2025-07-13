@@ -13,10 +13,10 @@ module Siru
     
     def date
       date_str = @front_matter['date']
-      return Date.today unless date_str
+      return DateTime.now unless date_str
       
       if date_str.is_a?(String)
-        Date.parse(date_str)
+        DateTime.parse(date_str)
       else
         date_str
       end
@@ -35,11 +35,32 @@ module Siru
     end
     
     def summary
-      @front_matter['summary'] || @content.split("\n\n").first&.strip || ''
+      @front_matter['summary'] || ''
     end
     
     def tags
       @front_matter['tags'] || []
+    end
+    
+    def published?
+      !draft?
+    end
+    
+    def excerpt
+      return summary unless summary.empty?
+      
+      # Generate excerpt from content if no summary available
+      # Remove headers and get the first paragraph of actual content
+      lines = @content.split("\n")
+      content_lines = lines.reject { |line| line.strip.start_with?('#') || line.strip.empty? }
+      first_paragraph = content_lines.first || ''
+      
+      # Limit to 200 characters
+      if first_paragraph.length > 200
+        first_paragraph[0...197] + '...'
+      else
+        first_paragraph
+      end
     end
     
     private

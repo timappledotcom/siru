@@ -50,10 +50,35 @@ RSpec.describe Siru::Post do
       post = Siru::Post.new(post_file)
 
       expect(post.title).to eq('Test Post')
-      expect(post.date).to eq('2025-07-13')
-      expect(post.draft).to be(false)
+      expect(post.date).to be_a(DateTime)
+      expect(post.date.strftime('%Y-%m-%d')).to eq('2025-07-13')
+      expect(post.draft?).to be(false)
       expect(post.tags).to eq(['test', 'example'])
       expect(post.summary).to eq('A test post')
+    end
+    
+    it 'handles datetime with time component' do
+      datetime_content = <<~MARKDOWN
+        +++
+        title = "DateTime Test"
+        date = "2025-07-13T14:30:00"
+        draft = false
+        +++
+        
+        # DateTime Test Post
+        
+        This post has a specific time.
+      MARKDOWN
+      
+      File.write('datetime-test.md', datetime_content)
+      post = Siru::Post.new('datetime-test.md')
+      
+      expect(post.date).to be_a(DateTime)
+      expect(post.date.strftime('%Y-%m-%d %H:%M:%S')).to eq('2025-07-13 14:30:00')
+      expect(post.date.hour).to eq(14)
+      expect(post.date.minute).to eq(30)
+      
+      File.delete('datetime-test.md')
     end
 
     it 'generates slug from title' do
@@ -65,16 +90,16 @@ RSpec.describe Siru::Post do
     it 'processes markdown content' do
       post = Siru::Post.new(post_file)
 
-      expect(post.content).to include('<h1>Test Post</h1>')
-      expect(post.content).to include('<h2>Section 2</h2>')
-      expect(post.content).to include('<p>This is a test post content.</p>')
+      expect(post.rendered_content).to include('<h1>Test Post</h1>')
+      expect(post.rendered_content).to include('<h2>Section 2</h2>')
+      expect(post.rendered_content).to include('<p>This is a test post content.</p>')
     end
 
     it 'handles draft posts' do
       File.write('draft-post.md', draft_post_content)
       post = Siru::Post.new('draft-post.md')
 
-      expect(post.draft).to be(true)
+      expect(post.draft?).to be(true)
       expect(post.title).to eq('Draft Post')
     end
   end

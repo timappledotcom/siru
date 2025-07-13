@@ -116,7 +116,8 @@ module Siru
         'linen' => '#faf8f1',
         'wheat' => '#f8f5d7',
         'gray' => '#fbfbfb',
-        'light' => '#fff'
+        'light' => '#fff',
+        'catppuccin-mocha' => '#1e1e2e'
       }
       
       color_map[@site.params['color']] || color_map['linen']
