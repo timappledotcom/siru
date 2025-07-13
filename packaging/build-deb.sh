@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="0.5.0"
+VERSION="0.6.0"
 PACKAGE_DIR="siru_${VERSION}_all"
 BUILD_DIR="packaging/build"
 
