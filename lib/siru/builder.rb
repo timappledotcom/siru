@@ -20,7 +20,37 @@ module Siru
       build_home_page
       build_post_pages
       
+      # Generate RSS feed
+      generate_rss_feed
+      
       puts "Site built successfully in #{@output_dir}/"
+    end
+
+    def generate_rss_feed
+      rss_content = "<?xml version='1.0' encoding='UTF-8' ?>\n"
+      rss_content += "<rss version='2.0'>\n"
+      rss_content += "<channel>\n"
+      rss_content += "<title>#{escape_xml(@site.title)}</title>\n"
+      rss_content += "<link>#{@site.base_url}</link>\n"
+      rss_content += "<description>The latest updates from #{escape_xml(@site.title)}</description>\n"
+      
+      @site.posts.each do |post|
+        rss_content += "<item>\n"
+        rss_content += "<title>#{escape_xml(post.title)}</title>\n"
+        rss_content += "<link>#{@site.base_url.chomp('/')}#{post.url}</link>\n"
+        rss_content += "<description>#{escape_xml(post.summary)}</description>\n"
+        rss_content += "<pubDate>#{post.date.rfc2822}</pubDate>\n"
+        rss_content += "</item>\n"
+      end
+      
+      rss_content += "</channel>\n"
+      rss_content += "</rss>\n"
+      
+      File.write(File.join(@output_dir, 'rss.xml'), rss_content)
+    end
+
+    def escape_xml(text)
+      text.to_s.gsub('&', '&amp;').gsub('<', '&lt;').gsub('>', '&gt;').gsub('"', '&quot;').gsub("'", '&apos;')
     end
     
     def clean
