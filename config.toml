@@ -1,6 +1,6 @@
 baseURL = "https://example.com"
 title = "Siru Blog"
-theme = "unified"
+theme = "default"
 languageCode = "en-us"
 description = "A Hugo-inspired static site generator built in Ruby"
 

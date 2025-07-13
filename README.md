@@ -1,179 +1,188 @@
 # Siru
 
-Siru is a static site generator inspired by [Hugo](https://gohugo.io/), built with Ruby.
+A modern static site generator inspired by [Hugo](https://gohugo.io/), built with Ruby. Features a unified theme system with multiple color schemes, fonts, and responsive design.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Usage](#usage)
+  - [Creating Content](#creating-content)
+  - [Working with Drafts](#working-with-drafts)
+- [Configuration](#configuration)
+  - [Site Configuration](#site-configuration)
+  - [Theme Configuration](#theme-configuration)
+- [Front Matter](#front-matter)
+- [Themes](#themes)
+- [Documentation](#documentation)
+- [License](#license)
 
 ## Features
-- Markdown content rendering
-- Theme support
-- Live server with reload
+
+- **Markdown Content**: Full Markdown support with TOML/YAML front matter
+- **Unified Theme System**: One theme with 7 color schemes and 10 fonts
+- **Live Development Server**: Auto-reload during development
+- **Draft Support**: Build with or without draft content
+- **Responsive Design**: Mobile-first, accessible layouts
+- **Social Integration**: Built-in support for Twitter, GitHub, Mastodon, Bluesky, Nostr
+- **Fast Performance**: Pure CSS, no framework dependencies
 
 ## Installation
 
 ### Via APT Repository (Ubuntu/Debian)
 
 ```bash
-# Add the repository
+# Add repository
 echo "deb [trusted=yes arch=amd64] https://raw.githubusercontent.com/timappledotcom/siru-apt-repo/main/ stable main" | sudo tee /etc/apt/sources.list.d/siru.list
 
-# Update package list
-sudo apt update
-
-# Install Siru
-sudo apt install siru
+# Install
+sudo apt update && sudo apt install siru
 ```
 
 ### Via .deb Package
 
 ```bash
-wget https://github.com/timappledotcom/siru/releases/download/v0.2.0/siru_0.2.0_all.deb
-sudo dpkg -i siru_0.2.0_all.deb
+wget https://github.com/timappledotcom/siru/releases/latest/download/siru.deb
+sudo dpkg -i siru.deb
 ```
 
-### Via Flatpak
+## Quick Start
 
 ```bash
-flatpak install --user siru-0.2.0.flatpak
+# Create a new site
+siru new myblog
+cd myblog
+
+# Create your first post
+siru new post "Hello World"
+
+# Start development server
+siru serve
+
+# Visit http://localhost:4000
 ```
 
 ## Usage
 
-1. **Create a new site**
-   ```
-   siru new [sitename]
-   ```
+### Creating Content
 
-2. **Create a new post**
-   
-   **Quick method (auto-generates and opens in editor):**
-   ```
-   siru new post "My Post Title"
-   siru new post "My Draft Post" --draft
-   ```
-   
-   This command will:
-   - Create a new markdown file in `content/posts/`
-   - Generate a filename from the title (e.g., "my-post-title.md")
-   - Add proper front matter with title, date, and draft status
-   - Open the file in your default editor (set via `$EDITOR` or `$VISUAL`)
-   
-   **Manual method:**
-   - Navigate to the `content/posts/` directory.
-   - Create a new Markdown file with TOML or YAML front matter:
-   
-   ```toml
-   +++
-   title = "My Awesome Post"
-   date = "2025-07-14"
-   draft = true
-   +++
-   
-   Content goes here.
-   ```
-
-3. **Create a new page**
-   - Navigate to the `content/` directory (not inside `posts`).
-   - Create a new Markdown file:
-
-   ```toml
-   +++
-   title = "About Us"
-   date = "2025-07-14"
-   draft = true
-   +++
-
-   About us content.
-   ```
-
-4. **Build the site**
-   ```
-   cd [sitename]
-   siru build
-   ```
-
-5. **Serve the site**
-   ```
-   siru serve
-   ```
-
-### Drafts
-
-- **Draft Mode**: To include draft posts in your build or serve, add the `--draft` option.
-
+#### New Site
 ```bash
-siru build --draft
-siru serve --draft
+siru new [sitename]
 ```
 
-- **Draft Status**: Posts with `draft = true` in their front matter will not be published unless the `--draft` option is used.
+#### New Post (Automatic)
+```bash
+siru new post "My Post Title"        # Creates and opens in editor
+siru new post "Draft Post" --draft   # Creates as draft
+```
+
+#### New Post (Manual)
+Create `content/posts/my-post.md`:
+```toml
++++
+title = "My Post"
+date = "2025-07-14"
+draft = false
++++
+
+Your content here.
+```
+
+#### New Page
+Create `content/about.md`:
+```toml
++++
+title = "About"
+date = "2025-07-14"
++++
+
+About page content.
+```
+
+### Building and Serving
+
+```bash
+siru build        # Build to public/
+siru serve        # Serve at http://localhost:4000
+```
+
+### Working with Drafts
+
+```bash
+siru build --draft   # Include drafts in build
+siru serve --draft   # Include drafts in development
+```
 
 ## Configuration
 
-Siru sites are configured through a `config.toml` file in the root directory:
+### Site Configuration
+
+Edit `config.toml`:
 
 ```toml
 baseURL = "https://yoursite.com/"
 languageCode = "en-us"
-title = "My Awesome Site"
-theme = "paper"
+title = "My Blog"
 
 [params]
-color = "linen"  # Theme color: linen, wheat, gray, light
-bio = "Welcome to my blog!"
-twitter = "yourusername"
-github = "yourusername"
-mastodon = "https://mastodon.social/@yourusername"
-bluesky = "yourusername.bsky.social"
+  bio = "Welcome to my blog!"
+  
+  # Social links (optional)
+  twitter = "username"
+  github = "username"
+  mastodon = "https://mastodon.social/@username"
+  bluesky = "username.bsky.social"
+  nostr = "npub1..."
+```
+
+### Theme Configuration
+
+The default theme supports multiple color schemes and fonts:
+
+```toml
+[params]
+  # Color schemes: catppuccin-mocha (default), catppuccin-latte, 
+  # catppuccin-macchiato, catppuccin-frappe, nord, dracula, tokyo-night
+  theme = "catppuccin-mocha"
+  
+  # Fonts: inter (default), helvetica, open-sans, roboto, lato,
+  # georgia, merriweather, playfair, crimson-text, source-code-pro
+  font = "inter"
 ```
 
 ## Front Matter
 
-Siru supports both TOML and YAML front matter:
+Supports both TOML (`+++`) and YAML (`---`) front matter:
 
-### TOML Front Matter
 ```toml
 +++
 title = "Post Title"
-date = "2025-07-14"
+date = "2025-07-14"           # Or "2025-07-14T14:30:00"
 draft = false
-tags = ["ruby", "static-site"]
-summary = "A brief summary of the post"
+tags = ["ruby", "web"]
+summary = "Brief description"
+slug = "custom-url"           # Optional
 +++
 ```
 
-### YAML Front Matter
-```yaml
----
-title: "Post Title"
-date: "2025-07-14"
-draft: false
-tags: ["ruby", "static-site"]
-summary: "A brief summary of the post"
----
-```
+## Themes
 
-### Available Front Matter Fields
-- `title`: Post/page title
-- `date`: Publication date (supports both date and datetime formats)
-- `draft`: Whether the content is a draft (true/false)
-- `tags`: Array of tags for the post
-- `summary`: Brief description (used in post lists)
-- `slug`: Custom URL slug (optional)
+Siru includes a unified default theme with:
+- **7 Color Schemes**: Catppuccin variants, Nord, Dracula, Tokyo Night
+- **10 Fonts**: Sans-serif, serif, and monospace options
+- **Runtime Switching**: Change themes/fonts in browser
+- **Responsive Design**: Mobile-first layouts
 
-#### Date and Time Support
+See [`themes/default/README.md`](themes/default/README.md) for complete theme documentation.
 
-Siru supports both date-only and datetime formats for the `date` field:
+## Documentation
 
-```toml
-# Date only
-date = "2025-07-14"
-
-# Date with time
-date = "2025-07-14T14:30:00"
-date = "2025-07-14 14:30:00"
-```
-
-When using datetime format, the time component is preserved and can be used for sorting posts and displaying in themes.
+- **[Theme Documentation](themes/default/README.md)**: Complete theme configuration guide
+- **[Theme Creation Guide](THEME_CREATION.md)**: How to create custom themes
+- **[Changelog](CHANGELOG.md)**: Version history and updates
 
 ## License
 
-This project is licensed under the terms of the [GPL-3.0 license](LICENSE).
+GPL-3.0 License - see [LICENSE](LICENSE) file.

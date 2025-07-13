@@ -1,79 +1,150 @@
-# Creating Themes for Siru
+# Creating Custom Themes for Siru
 
-Creating a new theme for Siru is a straightforward process. Here's a simple guide to help you create your own themes.
+While Siru includes a comprehensive default theme, you can create custom themes for specialized needs.
 
-## Steps to Create a New Theme
+## Theme Structure
 
-### 1. Theme Directory Structure
-
-Create a directory for your theme inside the `themes` directory:
+Create a theme directory:
 
 ```
 themes/
-└── your_theme_name/
+└── mytheme/
     ├── layouts/
+    │   ├── baseof.liquid    # Base template
+    │   ├── index.liquid     # Homepage
+    │   └── single.liquid    # Post/page template
     └── static/
+        ├── css/
+        ├── js/
+        └── images/
 ```
 
-- **layouts/**: Contains Liquid templating files for the pages.
-- **static/**: Contains any static assets like stylesheets or JavaScript files.
+## Required Layout Files
 
-### 2. Layout Files
-
-Create layout files for different page types in the `layouts` directory. Typical files include:
-- `baseof.liquid`: The base layout wrapping other layouts.
-- `index.liquid`: The homepage layout.
-- `single.liquid`: A layout for individual posts.
-
-Here's a basic example of `baseof.liquid`:
-
-```
+### baseof.liquid (Base Template)
+```liquid
 <!DOCTYPE html>
 <html lang="{{ site.language_code }}">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} - {{ site.title }}</title>
   <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
   <header>
-    <h1>{{ site.title }}</h1>
+    <h1><a href="/">{{ site.title }}</a></h1>
+    {% if site.params.bio %}
+      <p>{{ site.params.bio }}</p>
+    {% endif %}
   </header>
+  
   <main>
     {{ content }}
   </main>
+  
   <footer>
-    <p>Powered by Siru</p>
+    <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}</p>
   </footer>
 </body>
 </html>
 ```
 
-### 3. Static Files
+### index.liquid (Homepage)
+```liquid
+---
+layout: baseof
+---
 
-Add any CSS, JavaScript, or images in the `static` directory. They will be copied over to the `public` directory during the build process.
-
-### 4. Applying the Theme
-
-Update your site's `config.toml` to use the new theme:
-
-```toml
-theme = "your_theme_name"
+<section class="posts">
+  {% for post in site.posts %}
+    <article>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      <time>{{ post.date | date: "%B %d, %Y" }}</time>
+      {% if post.summary %}
+        <p>{{ post.summary }}</p>
+      {% endif %}
+    </article>
+  {% endfor %}
+</section>
 ```
 
-### 5. Testing the Theme
+### single.liquid (Post/Page Template)
+```liquid
+---
+layout: baseof
+---
 
-Run the Siru server to test the theme:
-
+<article>
+  <header>
+    <h1>{{ page.title }}</h1>
+    <time>{{ page.date | date: "%B %d, %Y" }}</time>
+  </header>
+  
+  <div class="content">
+    {{ content }}
+  </div>
+  
+  {% if page.tags %}
+    <footer>
+      <p>Tags: 
+        {% for tag in page.tags %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </p>
+    </footer>
+  {% endif %}
+</article>
 ```
-siru serve
-```
 
-### 6. Iterate and Customize
+## Available Template Variables
 
-Customize your theme's design and structure by modifying the layout and static files.
+### Site Variables
+- `site.title` - Site title
+- `site.base_url` - Base URL
+- `site.language_code` - Language code
+- `site.posts` - Array of all posts
+- `site.params.*` - Custom parameters from config.toml
 
+### Page Variables
+- `page.title` - Page/post title
+- `page.date` - Publication date
+- `page.content` - Rendered content
+- `page.url` - Page URL
+- `page.tags` - Array of tags
+- `page.summary` - Page summary
+- `page.draft` - Draft status
 
-## Conclusion
+## Using the Theme
 
-Creating themes for Siru is flexible and allows you to harness the power of Liquid templates and static files to design your site exactly how you want. Enjoy crafting your unique design!
+1. **Set theme in config.toml:**
+   ```toml
+   theme = "mytheme"
+   ```
+
+2. **Test the theme:**
+   ```bash
+   siru serve
+   ```
+
+3. **Build with theme:**
+   ```bash
+   siru build
+   ```
+
+## Best Practices
+
+- **Responsive Design**: Use mobile-first CSS
+- **Semantic HTML**: Use proper HTML5 elements
+- **Accessibility**: Include ARIA labels and alt text
+- **Performance**: Minimize CSS/JS, optimize images
+- **Liquid Filters**: Use `| date`, `| strip`, `| truncate` for formatting
+
+## Advanced Features
+
+For inspiration, see the default theme's implementation at `themes/default/` which includes:
+- CSS custom properties for theming
+- JavaScript for dynamic theme switching
+- Social media integration
+- Responsive navigation
+- SEO optimization

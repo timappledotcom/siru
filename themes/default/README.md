@@ -1,6 +1,6 @@
-# Siru Unified Theme
+# Siru Default Theme
 
-A modern, configurable theme for Siru static site generator with support for multiple color schemes and fonts.
+The modern, configurable theme for Siru static site generator with support for multiple color schemes and fonts.
 
 ## Features
 
@@ -14,42 +14,94 @@ A modern, configurable theme for Siru static site generator with support for mul
 
 ## Color Schemes
 
+Set in `config.toml` with `theme = "scheme-name"`:
+
 ### Catppuccin
-- **Mocha** (default): Dark theme with purple accents
-- **Latte**: Light theme with blue accents  
-- **Macchiato**: Dark theme with softer colors
-- **Frappé**: Dark theme with muted tones
+```toml
+theme = "catppuccin-mocha"     # Dark theme with purple accents (default)
+theme = "catppuccin-latte"     # Light theme with blue accents
+theme = "catppuccin-macchiato" # Dark theme with softer colors
+theme = "catppuccin-frappe"    # Dark theme with muted tones
+```
 
 ### Other Themes
-- **Nord**: Minimal dark theme with blue accents
-- **Dracula**: Dark theme with vibrant colors
-- **Tokyo Night**: Dark theme with purple and blue accents
+```toml
+theme = "nord"        # Minimal dark theme with blue accents
+theme = "dracula"     # Dark theme with vibrant colors
+theme = "tokyo-night" # Dark theme with purple and blue accents
+```
 
 ## Font Options
 
+Set in `config.toml` with `font = "font-name"`:
+
 ### Sans-serif (Modern & Clean)
-- **Inter** (default): Modern, highly readable
-- **Helvetica**: Classic, professional
-- **Open Sans**: Friendly, readable
-- **Roboto**: Clean, geometric
-- **Lato**: Friendly, approachable
+```toml
+font = "inter"      # Modern, highly readable (default)
+font = "helvetica"  # Classic, professional
+font = "open-sans"  # Friendly, readable
+font = "roboto"     # Clean, geometric
+font = "lato"       # Friendly, approachable
+```
 
 ### Serif (Traditional & Elegant)
-- **Georgia**: Classic web serif
-- **Merriweather**: Optimized for reading
-- **Playfair Display**: Elegant, high-contrast
-- **Crimson Text**: Academic, scholarly
+```toml
+font = "georgia"         # Classic web serif
+font = "merriweather"    # Optimized for reading
+font = "playfair"        # Elegant, high-contrast
+font = "crimson-text"    # Academic, scholarly
+```
 
 ### Monospace (Code-focused)
-- **Source Code Pro**: Optimized for code display
-
-## Configuration
-
-Add these settings to your `config.toml`:
-
 ```toml
-theme = "unified"
+font = "source-code-pro" # Optimized for code display
+```
 
+## Configuration Examples
+
+### Basic Configuration
+```toml
+[params]
+  theme = "catppuccin-mocha"  # Color scheme (default)
+  font = "inter"              # Font family (default)
+```
+
+### Popular Combinations
+
+#### Academic/Professional
+```toml
+[params]
+  theme = "catppuccin-latte"   # Light, professional theme
+  font = "georgia"             # Traditional serif font
+  bio = "Research and thoughts on computer science"
+```
+
+#### Developer Blog
+```toml
+[params]
+  theme = "dracula"            # Vibrant dark theme
+  font = "source-code-pro"     # Monospace font
+  bio = "Code, tutorials, and tech insights"
+```
+
+#### Minimal Design
+```toml
+[params]
+  theme = "nord"               # Clean, minimal theme
+  font = "helvetica"           # Classic sans-serif
+  bio = "Thoughts and ideas"
+```
+
+#### Creative Writing
+```toml
+[params]
+  theme = "tokyo-night"        # Atmospheric dark theme
+  font = "playfair"            # Elegant serif font
+  bio = "Stories, poetry, and creative writing"
+```
+
+### Full Configuration
+```toml
 [params]
   # Theme customization
   theme = "catppuccin-mocha"  # Color scheme
@@ -68,10 +120,11 @@ theme = "unified"
 
 ## Usage
 
-1. Copy the `unified` theme to your themes directory
-2. Set `theme = "unified"` in your `config.toml`
-3. Choose your preferred color scheme and font
-4. Customize social links and bio as needed
+Siru comes with this theme by default. Simply:
+
+1. Choose your preferred color scheme and font in `config.toml`
+2. Customize social links and bio as needed
+3. Start creating content!
 
 ## Browser Support
 

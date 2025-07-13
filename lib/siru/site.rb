@@ -5,7 +5,7 @@ module Siru
     def initialize(config, options = {})
       @config = config
       @options = options
-      @theme = Theme.new(config['theme'])
+@theme = Theme.new(config['theme'] || 'default')
       @posts = load_posts
     end
     

@@ -1,9 +1,9 @@
-# Siru Unified Theme Configuration Example
+# Siru Configuration Example
 
 title = "My Blog"
 description = "A blog about technology and life"
 language_code = "en"
-theme = "unified"
+theme = "default"
 
 [params]
   # Bio section (optional)
