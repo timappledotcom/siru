@@ -1,0 +1,4 @@
+#!/bin/bash
+ORIG_DIR="$PWD"
+cd /usr/share/siru
+CD="$ORIG_DIR" exec ruby -I lib bin/siru "$@"
