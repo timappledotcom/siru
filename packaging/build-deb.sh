@@ -35,8 +35,9 @@ cp THEME_CREATION.md "$BUILD_DIR/$PACKAGE_DIR/usr/share/doc/siru/"
 # Create wrapper script
 cat > "$BUILD_DIR/$PACKAGE_DIR/usr/bin/siru" << 'EOF'
 #!/bin/bash
+ORIG_DIR="$PWD"
 cd /usr/share/siru
-exec ruby -I lib bin/siru "$@"
+CD="$ORIG_DIR" exec ruby -I lib bin/siru "$@"
 EOF
 
 # Copy the actual binary

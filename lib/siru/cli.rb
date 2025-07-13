@@ -3,8 +3,12 @@ module Siru
     def self.new_site(name)
       puts "Creating new site: #{name}"
       
-      FileUtils.mkdir_p(name)
-      Dir.chdir(name) do
+      # Get the original working directory from environment variable or current directory
+      original_dir = ENV['CD'] || Dir.pwd
+      target_dir = File.expand_path(name, original_dir)
+      
+      FileUtils.mkdir_p(target_dir)
+      Dir.chdir(target_dir) do
         # Create directory structure
         %w[content content/posts static themes public].each do |dir|
           FileUtils.mkdir_p(dir)
