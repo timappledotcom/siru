@@ -1,0 +1,83 @@
+name: Update APT Repository
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  update-apt-repo:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout main repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        
+    - name: Extract version from tag
+      id: version
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/v}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Version: $VERSION"
+        
+    - name: Update build script version
+      run: |
+        sed -i 's/VERSION="[^"]*"/VERSION="${{ steps.version.outputs.version }}"/' packaging/build-deb.sh
+        sed -i 's/Version: [0-9.]\+/Version: ${{ steps.version.outputs.version }}/' packaging/debian/control
+        
+    - name: Build Debian package
+      run: |
+        chmod +x packaging/build-deb.sh
+        ./packaging/build-deb.sh
+        
+    - name: Checkout APT repository
+      uses: actions/checkout@v4
+      with:
+        repository: timappledotcom/siru-apt-repo
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: apt-repo-checkout
+        
+    - name: Update APT repository
+      run: |
+        # Copy new package to APT repo
+        cp packaging/build/siru_${{ steps.version.outputs.version }}_all.deb apt-repo-checkout/pool/main/s/siru/
+        
+        # Update repository metadata
+        cd apt-repo-checkout
+        
+        # Generate package indices
+        dpkg-scanpackages pool/ /dev/null > dists/stable/main/binary-amd64/Packages
+        dpkg-scanpackages pool/ /dev/null | gzip -9c > dists/stable/main/binary-amd64/Packages.gz
+        dpkg-scanpackages pool/ /dev/null > dists/stable/main/binary-all/Packages
+        dpkg-scanpackages pool/ /dev/null | gzip -9c > dists/stable/main/binary-all/Packages.gz
+        
+        # Generate Release file
+        ./generate-release.sh
+        
+    - name: Commit and push APT repository changes
+      run: |
+        cd apt-repo-checkout
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Automated release of Siru v${{ steps.version.outputs.version }}
+
+        - Add siru_${{ steps.version.outputs.version }}_all.deb package
+        - Update repository metadata and package indices
+        - Released via GitHub Actions automation"
+        git push
+        
+    - name: Upload package to release assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: packaging/build/siru_${{ steps.version.outputs.version }}_all.deb
+        asset_name: siru_${{ steps.version.outputs.version }}_all.deb
+        asset_content_type: application/vnd.debian.binary-package
