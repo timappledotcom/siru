@@ -1,0 +1,17 @@
+{% if site.params.bio %}
+<div class="site-bio">
+  <div class="bio-content">
+    <div class="bio-title">{{ site.title }}</div>
+    <div class="bio-text">{{ site.params.bio }}</div>
+  </div>
+</div>
+{% endif %}
+
+{% for post in posts %}
+<section class="post-preview">
+  <h2 class="post-title">{{ post.title }}</h2>
+  <time class="post-date">{{ post.date | date: "%B %d, %Y" }}</time>
+  <div class="post-summary">{{ post.summary }}</div>
+  <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
+</section>
+{% endfor %}

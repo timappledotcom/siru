@@ -1,0 +1,663 @@
+/* Siru Unified Theme - Configurable Colors and Fonts */
+
+/* ============================================
+   FONT IMPORTS - Top 10 Popular Blog Fonts
+   ============================================ */
+
+/* Sans-serif fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+/* Serif fonts */
+@import url('https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&display=swap');
+
+/* Monospace fonts */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600&display=swap');
+
+/* ============================================
+   COLOR SCHEME DEFINITIONS
+   ============================================ */
+
+/* Default: Catppuccin Mocha */
+:root {
+    --color-bg: #1e1e2e;
+    --color-surface: #313244;
+    --color-overlay: #585b70;
+    --color-text: #cdd6f4;
+    --color-text-secondary: #a6adc8;
+    --color-text-muted: #9399b2;
+    --color-primary: #89b4fa;
+    --color-primary-hover: #b4befe;
+    --color-accent: #f38ba8;
+    --color-success: #a6e3a1;
+    --color-warning: #f9e2af;
+    --color-error: #f38ba8;
+    --color-border: #585b70;
+    --color-social-twitter: #89b4fa;
+    --color-social-github: #a6adc8;
+    --color-social-mastodon: #cba6f7;
+    --color-social-bluesky: #89dceb;
+    --color-social-nostr: #f9e2af;
+    --color-social-rss: #fab387;
+}
+
+/* Catppuccin Latte (Light) */
+[data-theme="catppuccin-latte"] {
+    --color-bg: #eff1f5;
+    --color-surface: #e6e9ef;
+    --color-overlay: #9ca0b0;
+    --color-text: #4c4f69;
+    --color-text-secondary: #5c5f77;
+    --color-text-muted: #6c6f85;
+    --color-primary: #1e66f5;
+    --color-primary-hover: #04a5e5;
+    --color-accent: #d20f39;
+    --color-success: #40a02b;
+    --color-warning: #df8e1d;
+    --color-error: #d20f39;
+    --color-border: #9ca0b0;
+    --color-social-twitter: #1e66f5;
+    --color-social-github: #4c4f69;
+    --color-social-mastodon: #8839ef;
+    --color-social-bluesky: #209fb5;
+    --color-social-nostr: #df8e1d;
+    --color-social-rss: #fe640b;
+}
+
+/* Catppuccin Macchiato */
+[data-theme="catppuccin-macchiato"] {
+    --color-bg: #24273a;
+    --color-surface: #363a4f;
+    --color-overlay: #6e738d;
+    --color-text: #cad3f5;
+    --color-text-secondary: #a5adcb;
+    --color-text-muted: #939ab7;
+    --color-primary: #8aadf4;
+    --color-primary-hover: #b7bdf8;
+    --color-accent: #f5a97f;
+    --color-success: #a6da95;
+    --color-warning: #eed49f;
+    --color-error: #ed8796;
+    --color-border: #6e738d;
+    --color-social-twitter: #8aadf4;
+    --color-social-github: #a5adcb;
+    --color-social-mastodon: #c6a0f6;
+    --color-social-bluesky: #7dc4e4;
+    --color-social-nostr: #eed49f;
+    --color-social-rss: #f5a97f;
+}
+
+/* Catppuccin Frappé */
+[data-theme="catppuccin-frappe"] {
+    --color-bg: #303446;
+    --color-surface: #414559;
+    --color-overlay: #737994;
+    --color-text: #c6d0f5;
+    --color-text-secondary: #a5adce;
+    --color-text-muted: #949cbb;
+    --color-primary: #8caaee;
+    --color-primary-hover: #babbf1;
+    --color-accent: #ea999c;
+    --color-success: #a6d189;
+    --color-warning: #e5c890;
+    --color-error: #ea999c;
+    --color-border: #737994;
+    --color-social-twitter: #8caaee;
+    --color-social-github: #a5adce;
+    --color-social-mastodon: #ca9ee6;
+    --color-social-bluesky: #81c8be;
+    --color-social-nostr: #e5c890;
+    --color-social-rss: #ef9f76;
+}
+
+/* Nord Theme */
+[data-theme="nord"] {
+    --color-bg: #2e3440;
+    --color-surface: #3b4252;
+    --color-overlay: #4c566a;
+    --color-text: #eceff4;
+    --color-text-secondary: #d8dee9;
+    --color-text-muted: #a3be8c;
+    --color-primary: #5e81ac;
+    --color-primary-hover: #81a1c1;
+    --color-accent: #88c0d0;
+    --color-success: #a3be8c;
+    --color-warning: #ebcb8b;
+    --color-error: #bf616a;
+    --color-border: #4c566a;
+    --color-social-twitter: #5e81ac;
+    --color-social-github: #d8dee9;
+    --color-social-mastodon: #b48ead;
+    --color-social-bluesky: #88c0d0;
+    --color-social-nostr: #ebcb8b;
+    --color-social-rss: #d08770;
+}
+
+/* Dracula Theme */
+[data-theme="dracula"] {
+    --color-bg: #282a36;
+    --color-surface: #44475a;
+    --color-overlay: #6272a4;
+    --color-text: #f8f8f2;
+    --color-text-secondary: #6272a4;
+    --color-text-muted: #44475a;
+    --color-primary: #bd93f9;
+    --color-primary-hover: #ff79c6;
+    --color-accent: #ff79c6;
+    --color-success: #50fa7b;
+    --color-warning: #f1fa8c;
+    --color-error: #ff5555;
+    --color-border: #6272a4;
+    --color-social-twitter: #8be9fd;
+    --color-social-github: #f8f8f2;
+    --color-social-mastodon: #bd93f9;
+    --color-social-bluesky: #8be9fd;
+    --color-social-nostr: #f1fa8c;
+    --color-social-rss: #ffb86c;
+}
+
+/* Tokyo Night Theme */
+[data-theme="tokyonight"] {
+    --color-bg: #1a1b26;
+    --color-surface: #24283b;
+    --color-overlay: #414868;
+    --color-text: #c0caf5;
+    --color-text-secondary: #9aa5ce;
+    --color-text-muted: #565f89;
+    --color-primary: #7aa2f7;
+    --color-primary-hover: #bb9af7;
+    --color-accent: #f7768e;
+    --color-success: #9ece6a;
+    --color-warning: #e0af68;
+    --color-error: #f7768e;
+    --color-border: #414868;
+    --color-social-twitter: #7aa2f7;
+    --color-social-github: #9aa5ce;
+    --color-social-mastodon: #bb9af7;
+    --color-social-bluesky: #7dcfff;
+    --color-social-nostr: #e0af68;
+    --color-social-rss: #ff9e64;
+}
+
+/* ============================================
+   FONT FAMILY DEFINITIONS
+   ============================================ */
+
+/* Font family CSS custom properties */
+:root {
+    --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-open-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-roboto: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-lato: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-georgia: 'Georgia', 'Times New Roman', serif;
+    --font-merriweather: 'Merriweather', Georgia, serif;
+    --font-playfair: 'Playfair Display', Georgia, serif;
+    --font-crimson: 'Crimson Text', Georgia, serif;
+    --font-source-code: 'Source Code Pro', 'Courier New', monospace;
+}
+
+/* Default font (Inter) */
+:root {
+    --font-family: var(--font-inter);
+}
+
+/* Font family overrides */
+[data-font="inter"] { --font-family: var(--font-inter); }
+[data-font="helvetica"] { --font-family: var(--font-helvetica); }
+[data-font="open-sans"] { --font-family: var(--font-open-sans); }
+[data-font="roboto"] { --font-family: var(--font-roboto); }
+[data-font="lato"] { --font-family: var(--font-lato); }
+[data-font="georgia"] { --font-family: var(--font-georgia); }
+[data-font="merriweather"] { --font-family: var(--font-merriweather); }
+[data-font="playfair"] { --font-family: var(--font-playfair); }
+[data-font="crimson"] { --font-family: var(--font-crimson); }
+[data-font="source-code"] { --font-family: var(--font-source-code); }
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ============================================
+   LAYOUT COMPONENTS
+   ============================================ */
+
+.site-header {
+    margin: 0 auto;
+    max-width: 48rem;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.site-title:hover {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    color: var(--color-text-secondary);
+}
+
+.social-link:hover {
+    text-decoration: none;
+}
+
+.social-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+}
+
+/* Social link specific colors */
+.social-link.twitter { color: var(--color-social-twitter); }
+.social-link.twitter:hover { opacity: 0.8; }
+
+.social-link.github { color: var(--color-social-github); }
+.social-link.github:hover { opacity: 0.8; }
+
+.social-link.mastodon { color: var(--color-social-mastodon); }
+.social-link.mastodon:hover { opacity: 0.8; }
+
+.social-link.bluesky { color: var(--color-social-bluesky); }
+.social-link.bluesky:hover { opacity: 0.8; }
+
+.social-link.nostr { color: var(--color-social-nostr); }
+.social-link.nostr:hover { opacity: 0.8; }
+
+.social-link.rss { color: var(--color-social-rss); }
+.social-link.rss:hover { opacity: 0.8; }
+
+.site-content {
+    margin: 0 auto;
+    max-width: 48rem;
+    min-height: calc(100vh - 9rem);
+    padding: 3.5rem 2rem 4rem;
+}
+
+.site-footer {
+    margin: 0 auto;
+    max-width: 48rem;
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+}
+
+.site-footer a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.site-footer a:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
+
+/* ============================================
+   CONTENT COMPONENTS
+   ============================================ */
+
+/* Bio section */
+.site-bio {
+    margin-bottom: 3rem;
+    margin-top: -0.5rem;
+    padding: 2rem;
+    background-color: var(--color-surface);
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+}
+
+.bio-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.bio-text {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+/* Post previews */
+.post-preview {
+    position: relative;
+    margin: 2.5rem 0;
+    padding: 1.5rem;
+    background-color: var(--color-surface);
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-preview:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-preview:first-of-type {
+    margin-top: 0;
+}
+
+.post-preview:last-of-type {
+    margin-bottom: 0;
+}
+
+.post-preview .post-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.post-preview .post-date {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.post-preview .post-summary {
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+}
+
+.post-preview .post-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-decoration: none;
+    color: transparent;
+    z-index: 1;
+}
+
+/* Single post layout */
+.single-post {
+    max-width: none;
+}
+
+.single-header {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.single-title {
+    margin: 0 0 0.75rem 0;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.2;
+}
+
+.single-meta {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.single-content {
+    line-height: 1.7;
+    color: var(--color-text);
+}
+
+.single-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.single-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.single-tag:hover {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    border-color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+h1 {
+    font-size: 2.25rem;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 1.875rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+h5 {
+    font-size: 1.125rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
+
+strong {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+em {
+    font-style: italic;
+    color: var(--color-text-secondary);
+}
+
+code {
+    color: var(--color-accent);
+    background-color: var(--color-surface);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-family: var(--font-source-code);
+    font-size: 0.875em;
+    border: 1px solid var(--color-border);
+}
+
+pre {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--color-border);
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+blockquote {
+    border-left: 4px solid var(--color-primary);
+    color: var(--color-text-secondary);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    background-color: var(--color-surface);
+    padding: 1rem 1.5rem;
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+    color: var(--color-text);
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: var(--color-border);
+    margin: 2rem 0;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .site-header,
+    .site-content,
+    .site-footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .site-nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .social-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .single-title {
+        font-size: 1.75rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .post-preview {
+        padding: 1rem;
+    }
+    
+    .site-bio {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-content {
+        padding: 2rem 1rem;
+    }
+    
+    .single-title {
+        font-size: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    .post-preview {
+        margin: 1.5rem 0;
+    }
+}

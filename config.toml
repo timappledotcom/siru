@@ -1,8 +1,12 @@
 baseURL = "https://example.com"
-title = "Test Site"
-theme = "paper+"
+title = "Siru Blog"
+theme = "unified"
 languageCode = "en-us"
+description = "A Hugo-inspired static site generator built in Ruby"
 
 [params]
-color = "linen"
-bio = "A test site"
+  bio = "Welcome to Siru! A fast, flexible static site generator built in Ruby with configurable themes and fonts."
+  theme = "catppuccin-mocha"  # catppuccin-mocha, catppuccin-latte, catppuccin-macchiato, catppuccin-frappe, nord, dracula, tokyonight
+  font = "inter"              # inter, helvetica, open-sans, roboto, lato, georgia, merriweather, playfair, crimson, source-code
+  twitter = "timappledotcom"
+  github = "timappledotcom"

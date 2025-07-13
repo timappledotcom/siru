@@ -1,0 +1,47 @@
+# Siru Unified Theme Configuration Example
+
+title = "My Blog"
+description = "A blog about technology and life"
+language_code = "en"
+theme = "unified"
+
+[params]
+  # Bio section (optional)
+  bio = "Welcome to my blog! I write about technology, programming, and life."
+  
+  # Theme settings
+  theme = "catppuccin-mocha"  # Available: catppuccin-mocha, catppuccin-latte, catppuccin-macchiato, catppuccin-frappe, nord, dracula, tokyonight
+  font = "inter"              # Available: inter, helvetica, open-sans, roboto, lato, georgia, merriweather, playfair, crimson, source-code
+  
+  # Social links (all optional)
+  twitter = "yourusername"
+  github = "yourusername"
+  mastodon = "https://mastodon.social/@yourusername"
+  bluesky = "yourusername.bsky.social"
+  nostr = "npub1yournostrpubkey..."
+
+# Color Scheme Options:
+# - catppuccin-mocha (default, dark)
+# - catppuccin-latte (light)
+# - catppuccin-macchiato (dark)
+# - catppuccin-frappe (dark)
+# - nord (dark)
+# - dracula (dark)
+# - tokyonight (dark)
+
+# Font Options:
+# Sans-serif:
+# - inter (default, modern)
+# - helvetica (classic)
+# - open-sans (readable)
+# - roboto (clean)
+# - lato (friendly)
+#
+# Serif:
+# - georgia (classic)
+# - merriweather (readable)
+# - playfair (elegant)
+# - crimson (academic)
+#
+# Monospace:
+# - source-code (for code-heavy blogs)
