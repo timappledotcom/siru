@@ -19,15 +19,10 @@ module Siru
           'baseURL' => 'http://localhost:3000/',
           'languageCode' => 'en-us',
           'title' => name.capitalize,
-          'theme' => 'paper',
           'params' => {
-            'color' => 'linen',
-            'bio' => 'A blog powered by Siru',
-            'disableHLJS' => true,
-            'disablePostNavigation' => true,
-            'monoDarkIcon' => true,
-            'math' => true,
-            'localKatex' => false
+            'theme' => 'catppuccin-mocha',
+            'font' => 'inter',
+            'bio' => 'A blog powered by Siru'
           }
         }
         
@@ -48,16 +43,16 @@ module Siru
         
         File.write('content/posts/hello-siru.md', sample_post)
         
-        # Copy theme files
+        # Copy default theme files
         siru_gem_dir = File.expand_path('../../..', __FILE__)
-        source_theme_dir = File.join(siru_gem_dir, 'themes', 'paper')
-        target_theme_dir = File.join('themes', 'paper')
+        source_theme_dir = File.join(siru_gem_dir, 'themes', 'default')
+        target_theme_dir = File.join('themes', 'default')
         
         if Dir.exist?(source_theme_dir)
           FileUtils.cp_r(source_theme_dir, 'themes/')
-          puts "Theme 'paper' copied successfully"
+          puts "Theme 'default' copied successfully"
         else
-          puts "Warning: Theme 'paper' not found in #{source_theme_dir}"
+          puts "Warning: Theme 'default' not found in #{source_theme_dir}"
         end
         
         puts "Site created successfully!"

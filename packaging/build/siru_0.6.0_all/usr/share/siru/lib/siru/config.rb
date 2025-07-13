@@ -82,9 +82,10 @@ module Siru
         'baseURL' => 'http://localhost:3000/',
         'languageCode' => 'en-us',
         'title' => 'My Siru Site',
-        'theme' => 'paper',
         'params' => {
-          'color' => 'linen'
+          'theme' => 'catppuccin-mocha',
+          'font' => 'inter',
+          'bio' => 'Welcome to my blog!'
         }
       }
     end
