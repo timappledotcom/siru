@@ -1,0 +1,64 @@
+{
+  "app-id": "com.github.timappledotcom.siru",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "23.08",
+  "sdk": "org.freedesktop.Sdk",
+  "command": "siru-wrapper",
+  "finish-args": [
+    "--socket=wayland",
+    "--socket=fallback-x11",
+    "--share=network",
+    "--filesystem=home"
+  ],
+  "modules": [
+    {
+      "name": "ruby",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/bin",
+        "cp /usr/bin/ruby /app/bin/",
+        "cp -r /usr/lib/ruby /app/lib/ || true",
+        "cp /usr/bin/gem /app/bin/ || true",
+        "cp /usr/bin/bundle /app/bin/ || true"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "/usr/bin/ruby"
+        }
+      ]
+    },
+    {
+      "name": "siru",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p /app/share/siru",
+        "cp -r lib themes Gemfile Gemfile.lock siru.gemspec /app/share/siru/",
+        "mkdir -p /app/share/siru/bin",
+        "cp bin/siru /app/share/siru/bin/",
+        "chmod +x /app/share/siru/bin/siru",
+        "mkdir -p /app/bin",
+        "cat > /app/bin/siru-wrapper << 'EOF'",
+        "#!/bin/bash",
+        "cd /app/share/siru",
+        "export GEM_HOME=/app/share/siru/.gems",
+        "export GEM_PATH=/app/share/siru/.gems",
+        "mkdir -p $GEM_HOME",
+        "if [ ! -f $GEM_HOME/.installed ]; then",
+        "  /app/bin/bundle install --path .gems --deployment --without development",
+        "  touch $GEM_HOME/.installed",
+        "fi",
+        "exec /app/bin/ruby -I lib bin/siru \"$@\"",
+        "EOF",
+        "chmod +x /app/bin/siru-wrapper"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/timappledotcom/siru/releases/download/v0.1.0/siru-0.1.0.tar.gz",
+          "sha256": "66ac395fdeaf5262869528edb4c14dc3463b6ec15c2678e68bf6ec04a5f41008"
+        }
+      ]
+    }
+  ]
+}
