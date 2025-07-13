@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="0.2.0"
+VERSION="0.2.1"
 RELEASE_DIR="release"
 
 echo "Creating Siru v${VERSION} release..."

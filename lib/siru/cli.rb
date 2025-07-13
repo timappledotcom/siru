@@ -70,14 +70,18 @@ module Siru
     end
     
     def self.new_post(title, options = {})
-      unless File.exist?('config.toml')
+      # Get the original working directory from environment variable or current directory
+      original_dir = ENV['CD'] || Dir.pwd
+      config_path = File.join(original_dir, 'config.toml')
+      
+      unless File.exist?(config_path)
         puts "Error: Not in a Siru site directory. Run 'siru new SITENAME' first."
         exit 1
       end
       
       # Generate filename from title
       filename = title.downcase.gsub(/\s+/, '-').gsub(/[^a-z0-9\-]/, '') + '.md'
-      filepath = File.join('content', 'posts', filename)
+      filepath = File.join(original_dir, 'content', 'posts', filename)
       
       # Check if file already exists
       if File.exist?(filepath)

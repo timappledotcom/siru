@@ -1,4 +1,4 @@
-# Siru v0.2.0 - Initial Release
+# Siru v0.2.1 - Initial Release
 
 Siru is a Hugo-inspired static site generator built in Ruby.
 
@@ -15,16 +15,16 @@ Siru is a Hugo-inspired static site generator built in Ruby.
 
 ### From .deb Package (Debian/Ubuntu)
 ```bash
-wget https://github.com/timappledotcom/siru/releases/download/v0.2.0/siru_0.2.0_all.deb
-sudo dpkg -i siru_0.2.0_all.deb
+wget https://github.com/timappledotcom/siru/releases/download/v0.2.1/siru_0.2.1_all.deb
+sudo dpkg -i siru_0.2.1_all.deb
 sudo apt-get install -f  # Fix any dependency issues
 ```
 
 ### From Source
 ```bash
-wget https://github.com/timappledotcom/siru/releases/download/v0.2.0/siru-0.2.0.tar.gz
-tar -xzf siru-0.2.0.tar.gz
-cd siru-0.2.0
+wget https://github.com/timappledotcom/siru/releases/download/v0.2.1/siru-0.2.1.tar.gz
+tar -xzf siru-0.2.1.tar.gz
+cd siru-0.2.1
 bundle install
 ```
 
@@ -33,8 +33,8 @@ Flatpak manifest and build scripts are included in this release. See [FLATPAK.md
 
 ```bash
 # Extract Flatpak files
-wget https://github.com/timappledotcom/siru/releases/download/v0.2.0/siru-0.2.0-flatpak.tar.gz
-tar -xzf siru-0.2.0-flatpak.tar.gz
+wget https://github.com/timappledotcom/siru/releases/download/v0.2.1/siru-0.2.1-flatpak.tar.gz
+tar -xzf siru-0.2.1-flatpak.tar.gz
 # Follow instructions in FLATPAK.md
 ```
 
