@@ -10,10 +10,11 @@ OptionParser.new do |opts|
   
   opts.separator ""
   opts.separator "Commands:"
-  opts.separator "    new SITENAME    Create a new site"
-  opts.separator "    build           Build the site"
-  opts.separator "    serve           Serve the site locally"
-  opts.separator "    help            Show this help"
+  opts.separator "    new SITENAME        Create a new site"
+  opts.separator "    new post TITLE      Create a new post"
+  opts.separator "    build               Build the site"
+  opts.separator "    serve               Serve the site locally"
+  opts.separator "    help                Show this help"
   opts.separator ""
   opts.separator "Options:"
   
@@ -39,13 +40,27 @@ command = ARGV[0]
 
 case command
 when 'new'
-  site_name = ARGV[1]
-  if site_name.nil?
-    puts "Error: Please provide a site name"
-    puts "Usage: siru new SITENAME"
-    exit 1
+  subcommand = ARGV[1]
+  case subcommand
+  when 'post'
+    post_title = ARGV[2..-1].join(' ')
+    if post_title.empty?
+      puts "Error: Please provide a post title"
+      puts "Usage: siru new post TITLE"
+      exit 1
+    end
+    Siru::CLI.new_post(post_title, options)
+  else
+    # Treat as site name for backward compatibility
+    site_name = subcommand
+    if site_name.nil?
+      puts "Error: Please provide a site name or 'post' subcommand"
+      puts "Usage: siru new SITENAME"
+      puts "       siru new post TITLE"
+      exit 1
+    end
+    Siru::CLI.new_site(site_name)
   end
-  Siru::CLI.new_site(site_name)
 when 'build'
   Siru::CLI.build(options)
 when 'serve'
@@ -56,10 +71,11 @@ when 'help', nil
   puts "Usage: siru [command] [options]"
   puts ""
   puts "Commands:"
-  puts "  new SITENAME    Create a new site"
-  puts "  build           Build the site"
-  puts "  serve           Serve the site locally"
-  puts "  help            Show this help"
+  puts "  new SITENAME        Create a new site"
+  puts "  new post TITLE      Create a new post"
+  puts "  build               Build the site"
+  puts "  serve               Serve the site locally"
+  puts "  help                Show this help"
   puts ""
   puts "Options:"
   puts "  -p, --port PORT     Port to serve on (default: 3000)"

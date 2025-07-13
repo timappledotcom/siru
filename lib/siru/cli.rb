@@ -68,5 +68,50 @@ module Siru
       server = Server.new(site, options)
       server.start
     end
+    
+    def self.new_post(title, options = {})
+      unless File.exist?('config.toml')
+        puts "Error: Not in a Siru site directory. Run 'siru new SITENAME' first."
+        exit 1
+      end
+      
+      # Generate filename from title
+      filename = title.downcase.gsub(/\s+/, '-').gsub(/[^a-z0-9\-]/, '') + '.md'
+      filepath = File.join('content', 'posts', filename)
+      
+      # Check if file already exists
+      if File.exist?(filepath)
+        puts "Error: Post '#{filepath}' already exists."
+        exit 1
+      end
+      
+      # Create the posts directory if it doesn't exist
+      FileUtils.mkdir_p(File.dirname(filepath))
+      
+      # Generate post content
+      date = Date.today.strftime('%Y-%m-%d')
+      draft = options[:draft] ? 'true' : 'false'
+      
+      # Clean up the title (remove any surrounding quotes)
+      clean_title = title.gsub(/^["']|["']$/, '')
+      
+      post_content = <<~POST
+        +++
+        title = "#{clean_title}"
+        date = "#{date}"
+        draft = #{draft}
+        +++
+        
+        Write your post content here.
+      POST
+      
+      # Write the file
+      File.write(filepath, post_content)
+      puts "Created new post: #{filepath}"
+      
+      # Open in editor
+      editor = ENV['EDITOR'] || ENV['VISUAL'] || 'nano'
+      system("#{editor} #{filepath}")
+    end
   end
 end

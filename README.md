@@ -43,6 +43,20 @@ flatpak install --user siru-0.1.0.flatpak
    ```
 
 2. **Create a new post**
+   
+   **Quick method (auto-generates and opens in editor):**
+   ```
+   siru new post "My Post Title"
+   siru new post "My Draft Post" --draft
+   ```
+   
+   This command will:
+   - Create a new markdown file in `content/posts/`
+   - Generate a filename from the title (e.g., "my-post-title.md")
+   - Add proper front matter with title, date, and draft status
+   - Open the file in your default editor (set via `$EDITOR` or `$VISUAL`)
+   
+   **Manual method:**
    - Navigate to the `content/posts/` directory.
    - Create a new Markdown file with TOML or YAML front matter:
    
