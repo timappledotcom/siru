@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = "siru"
-  spec.version = "0.2.2"
+  spec.version = "0.2.3"
   spec.authors       = ["Tim Apple"]
   spec.email         = ["tim.apple@hey.com"]
   spec.summary       = "A Hugo-inspired static site generator built in Ruby"
