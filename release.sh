@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION="0.1.0"
+VERSION="0.2.0"
 RELEASE_DIR="release"
 
 echo "Creating Siru v${VERSION} release..."
@@ -18,6 +18,15 @@ cp packaging/build/siru_${VERSION}_all.deb "$RELEASE_DIR/"
 # Create source tarball
 echo "Creating source tarball..."
 git archive --format=tar.gz --prefix=siru-${VERSION}/ HEAD > "$RELEASE_DIR/siru-${VERSION}.tar.gz"
+
+# Copy Flatpak files for distribution
+echo "Copying Flatpak files..."
+cp -r packaging/flatpak "$RELEASE_DIR/"
+cp packaging/FLATPAK.md "$RELEASE_DIR/"
+
+# Create Flatpak tarball
+echo "Creating Flatpak tarball..."
+tar -czf "$RELEASE_DIR/siru-${VERSION}-flatpak.tar.gz" -C packaging flatpak FLATPAK.md
 
 # Create release notes
 cat > "$RELEASE_DIR/RELEASE_NOTES.md" << EOF
@@ -49,6 +58,16 @@ wget https://github.com/timappledotcom/siru/releases/download/v${VERSION}/siru-$
 tar -xzf siru-${VERSION}.tar.gz
 cd siru-${VERSION}
 bundle install
+\`\`\`
+
+### Flatpak (Advanced)
+Flatpak manifest and build scripts are included in this release. See [FLATPAK.md](FLATPAK.md) for detailed build instructions.
+
+\`\`\`bash
+# Extract Flatpak files
+wget https://github.com/timappledotcom/siru/releases/download/v${VERSION}/siru-${VERSION}-flatpak.tar.gz
+tar -xzf siru-${VERSION}-flatpak.tar.gz
+# Follow instructions in FLATPAK.md
 \`\`\`
 
 ## Usage
