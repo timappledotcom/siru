@@ -1,12 +1,15 @@
 #!/bin/bash
 set -e
 
-# Install Ruby dependencies
-cd /usr/share/siru
-bundle install --deployment --without development
-
 # Make sure the binary is executable
 chmod +x /usr/bin/siru
+
+# Install Ruby dependencies
+echo "Installing Ruby dependencies..."
+cd /usr/share/siru
+bundle config set deployment true
+bundle config set without 'development'
+bundle install
 
 echo "Siru installed successfully!"
 echo "Create a new site with: siru new mysite"
