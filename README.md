@@ -13,7 +13,7 @@ Siru is a static site generator inspired by [Hugo](https://gohugo.io/), built wi
 
 ```bash
 # Add the repository
-echo "deb [trusted=yes] https://timappledotcom.github.io/siru-apt-repo/ stable main" | sudo tee /etc/apt/sources.list.d/siru.list
+echo "deb [trusted=yes arch=amd64] https://raw.githubusercontent.com/timappledotcom/siru-apt-repo/main/ stable main" | sudo tee /etc/apt/sources.list.d/siru.list
 
 # Update package list
 sudo apt update
