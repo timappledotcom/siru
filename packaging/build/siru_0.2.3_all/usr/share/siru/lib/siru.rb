@@ -19,5 +19,5 @@ require_relative 'siru/builder'
 require_relative 'siru/config'
 
 module Siru
-  VERSION = "0.2.2"
+  VERSION = "0.2.3"
 end

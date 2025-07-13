@@ -68,17 +68,39 @@ module Siru
     end
     
     def self.build(options = {})
-      config = Config.load
-      site = Site.new(config, options)
-      builder = Builder.new(site, options)
-      builder.build
+      # Get the original working directory from environment variable or current directory
+      original_dir = ENV['CD'] || Dir.pwd
+      config_path = File.join(original_dir, 'config.toml')
+      
+      unless File.exist?(config_path)
+        puts "Error: Not in a Siru site directory. Run 'siru new SITENAME' first."
+        exit 1
+      end
+      
+      Dir.chdir(original_dir) do
+        config = Config.load
+        site = Site.new(config, options)
+        builder = Builder.new(site, options)
+        builder.build
+      end
     end
     
     def self.serve(options = {})
-      config = Config.load
-      site = Site.new(config, options)
-      server = Server.new(site, options)
-      server.start
+      # Get the original working directory from environment variable or current directory
+      original_dir = ENV['CD'] || Dir.pwd
+      config_path = File.join(original_dir, 'config.toml')
+      
+      unless File.exist?(config_path)
+        puts "Error: Not in a Siru site directory. Run 'siru new SITENAME' first."
+        exit 1
+      end
+      
+      Dir.chdir(original_dir) do
+        config = Config.load
+        site = Site.new(config, options)
+        server = Server.new(site, options)
+        server.start
+      end
     end
     
     def self.new_post(title, options = {})
