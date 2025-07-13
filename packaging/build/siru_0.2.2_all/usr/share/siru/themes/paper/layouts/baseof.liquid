@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="{{ site.language_code }}" style="--bg: {{ bg_color }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }} - {{ site.title }}</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[--bg] text-black antialiased duration-200 ease-out dark:text-white">
+  <header class="mx-auto max-w-3xl px-8 py-4">
+    <nav class="flex items-center justify-between">
+      <a href="/" class="text-xl font-bold">{{ site.title }}</a>
+      <div class="flex space-x-4">
+        {% if site.params.twitter %}
+          <a href="https://twitter.com/{{ site.params.twitter }}" class="text-blue-500 hover:text-blue-600">Twitter</a>
+        {% endif %}
+        {% if site.params.github %}
+          <a href="https://github.com/{{ site.params.github }}" class="text-gray-700 hover:text-gray-900">GitHub</a>
+        {% endif %}
+        {% if site.params.mastodon %}
+          <a href="{{ site.params.mastodon }}" class="text-purple-600 hover:text-purple-700">Mastodon</a>
+        {% endif %}
+        {% if site.params.bluesky %}
+          <a href="https://bsky.app/profile/{{ site.params.bluesky }}" class="text-sky-600 hover:text-sky-700">Bluesky</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+  
+  <main class="prose prose-neutral dark:prose-invert mx-auto min-h-[calc(100vh-9rem)] max-w-3xl px-8 pt-14 pb-16">
+    {{ content }}
+  </main>
+  
+  <footer class="mx-auto max-w-3xl px-8 py-4 text-center text-sm text-gray-600 dark:text-gray-400">
+    <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}. Powered by <a href="https://github.com/timappledotcom/siru" class="text-blue-600 hover:text-blue-700">Siru</a>.</p>
+  </footer>
+</body>
+</html>

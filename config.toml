@@ -1,0 +1,8 @@
+baseURL = "https://example.com"
+title = "Test Site"
+theme = "paper"
+languageCode = "en-us"
+
+[params]
+color = "linen"
+bio = "A test site"
