@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="{{ site.language_code }}" style="--bg: {{ bg_color }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }} - {{ site.title }}</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="/rss.xml">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[--bg] text-black antialiased duration-200 ease-out dark:text-white">
+  <header class="mx-auto max-w-3xl px-8 py-4">
+    <nav class="flex items-center justify-between">
+      <a href="/" class="text-xl font-bold">{{ site.title }}</a>
+      <div class="flex space-x-4 items-center">
+        {% if site.params.social.x %}
+          <a href="{{ site.params.social.x }}" class="text-blue-500 hover:text-blue-600" title="Follow on X/Twitter">
+            <svg class="w-5 h-5" viewBox="4 4 40 40" fill="currentColor">
+              <path d="M 12.5 6 C 8.9280619 6 6 8.9280619 6 12.5 L 6 35.5 C 6 39.071938 8.9280619 42 12.5 42 L 35.5 42 C 39.071938 42 42 39.071938 42 35.5 L 42 12.5 C 42 8.9280619 39.071938 6 35.5 6 L 12.5 6 z M 12.5 9 L 35.5 9 C 37.450062 9 39 10.549938 39 12.5 L 39 35.5 C 39 37.450062 37.450062 39 35.5 39 L 12.5 39 C 10.549938 39 9 37.450062 9 35.5 L 9 12.5 C 9 10.549938 10.549938 9 12.5 9 z M 13.828125 14 L 21.564453 25.056641 L 13.822266 34 L 15.865234 34 L 22.46875 26.351562 L 27.820312 34 L 34.257812 34 L 26.025391 22.234375 L 33.136719 14 L 31.136719 14 L 25.123047 20.943359 L 20.265625 14 L 13.828125 14 z M 16.935547 15.695312 L 19.498047 15.695312 L 31.150391 32.304688 L 28.587891 32.304688 L 16.935547 15.695312 z"/>
+            </svg>
+          </a>
+        {% endif %}
+        {% if site.params.social.mastodon %}
+          <a href="{{ site.params.social.mastodon }}" class="text-purple-600 hover:text-purple-700" title="Follow on Mastodon">
+            <svg class="w-5 h-5" viewBox="4 4 40 40" fill="currentColor">
+              <path d="M 12.5 6 C 8.9280619 6 6 8.9280619 6 12.5 L 6 35.5 C 6 39.071938 8.9280619 42 12.5 42 L 35.5 42 C 39.071938 42 42 39.071938 42 35.5 L 42 12.5 C 42 8.9280619 39.071938 6 35.5 6 L 12.5 6 z M 12.5 9 L 35.5 9 C 37.450062 9 39 10.549938 39 12.5 L 39 35.5 C 39 37.450062 37.450062 39 35.5 39 L 12.5 39 C 10.549938 39 9 37.450062 9 35.5 L 9 12.5 C 9 10.549938 10.549938 9 12.5 9 z M 18 15 C 14.134 15 11 18.134 11 22 L 11 26 C 11 29.866 14.134 33 18 33 L 30 33 C 33.866 33 37 29.866 37 26 L 37 22 C 37 18.134 33.866 15 30 15 L 18 15 z M 18 17 L 30 17 C 32.761 17 35 19.239 35 22 L 35 26 C 35 28.761 32.761 31 30 31 L 18 31 C 15.239 31 13 28.761 13 26 L 13 22 C 13 19.239 15.239 17 18 17 z M 19 19 L 19 29 L 21 29 L 21 23 L 27 23 L 27 29 L 29 29 L 29 19 L 27 19 L 27 21 L 21 21 L 21 19 L 19 19 z"/>
+            </svg>
+          </a>
+        {% endif %}
+        {% if site.params.social.bluesky %}
+          <a href="{{ site.params.social.bluesky }}" class="text-sky-600 hover:text-sky-700" title="Follow on Bluesky">
+            <svg class="w-5 h-5" viewBox="4 4 40 40" fill="currentColor">
+              <path d="M 12.5 6 C 8.9280619 6 6 8.9280619 6 12.5 L 6 35.5 C 6 39.071938 8.9280619 42 12.5 42 L 35.5 42 C 39.071938 42 42 39.071938 42 35.5 L 42 12.5 C 42 8.9280619 39.071938 6 35.5 6 L 12.5 6 z M 12.5 9 L 35.5 9 C 37.450062 9 39 10.549938 39 12.5 L 39 35.5 C 39 37.450062 37.450062 39 35.5 39 L 12.5 39 C 10.549938 39 9 37.450062 9 35.5 L 9 12.5 C 9 10.549938 10.549938 9 12.5 9 z M 24 14 C 20.134 14 17 17.134 17 21 C 17 24.866 20.134 28 24 28 C 27.866 28 31 24.866 31 21 C 31 17.134 27.866 14 24 14 z M 24 16 C 26.761 16 29 18.239 29 21 C 29 23.761 26.761 26 24 26 C 21.239 26 19 23.761 19 21 C 19 18.239 21.239 16 24 16 z M 16 30 C 15.448 30 15 30.448 15 31 C 15 31.552 15.448 32 16 32 L 32 32 C 32.552 32 33 31.552 33 31 C 33 30.448 32.552 30 32 30 L 16 30 z"/>
+            </svg>
+          </a>
+        {% endif %}
+        {% if site.params.social.nostr %}
+          <a href="{{ site.params.social.nostr }}" class="text-yellow-600 hover:text-yellow-700" title="Follow on Nostr">
+            <svg class="w-5 h-5" viewBox="4 4 40 40" fill="currentColor">
+              <path d="M 12.5 6 C 8.9280619 6 6 8.9280619 6 12.5 L 6 35.5 C 6 39.071938 8.9280619 42 12.5 42 L 35.5 42 C 39.071938 42 42 39.071938 42 35.5 L 42 12.5 C 42 8.9280619 39.071938 6 35.5 6 L 12.5 6 z M 12.5 9 L 35.5 9 C 37.450062 9 39 10.549938 39 12.5 L 39 35.5 C 39 37.450062 37.450062 39 35.5 39 L 12.5 39 C 10.549938 39 9 37.450062 9 35.5 L 9 12.5 C 9 10.549938 10.549938 9 12.5 9 z M 24 14 L 24 22 L 32 22 L 32 26 L 24 26 L 24 34 L 20 34 L 20 26 L 12 26 L 12 22 L 20 22 L 20 14 L 24 14 z"/>
+            </svg>
+          </a>
+        {% endif %}
+        <a href="/rss.xml" class="text-orange-600 hover:text-orange-700" title="RSS Feed">
+          <svg class="w-5 h-5" viewBox="4 4 40 40" fill="currentColor">
+            <path d="M 12.5 6 C 8.9280619 6 6 8.9280619 6 12.5 L 6 35.5 C 6 39.071938 8.9280619 42 12.5 42 L 35.5 42 C 39.071938 42 42 39.071938 42 35.5 L 42 12.5 C 42 8.9280619 39.071938 6 35.5 6 L 12.5 6 z M 12.5 9 L 35.5 9 C 37.450062 9 39 10.549938 39 12.5 L 39 35.5 C 39 37.450062 37.450062 39 35.5 39 L 12.5 39 C 10.549938 39 9 37.450062 9 35.5 L 9 12.5 C 9 10.549938 10.549938 9 12.5 9 z M 12 18 C 12 17.448 12.448 17 13 17 C 18.514 17 23 21.486 23 27 C 23 27.552 22.552 28 22 28 C 21.448 28 21 27.552 21 27 C 21 22.589 17.411 19 13 19 C 12.448 19 12 18.552 12 18 z M 12 22 C 12 21.448 12.448 21 13 21 C 16.309 21 19 23.691 19 27 C 19 27.552 18.552 28 18 28 C 17.448 28 17 27.552 17 27 C 17 24.794 15.206 23 13 23 C 12.448 23 12 22.552 12 22 z M 13 26 C 13.552 26 14 26.448 14 27 C 14 27.552 13.552 28 13 28 C 12.448 28 12 27.552 12 27 C 12 26.448 12.448 26 13 26 z"/>
+          </svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+  
+  <main class="prose prose-neutral dark:prose-invert mx-auto min-h-[calc(100vh-9rem)] max-w-3xl px-8 pt-14 pb-16">
+    {{ content }}
+  </main>
+  
+  <footer class="mx-auto max-w-3xl px-8 py-4 text-center text-sm text-gray-600 dark:text-gray-400">
+    <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}. Powered by <a href="https://github.com/timappledotcom/siru" class="text-blue-600 hover:text-blue-700">Siru</a>.</p>
+  </footer>
+</body>
+</html>
