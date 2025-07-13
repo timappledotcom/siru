@@ -7,6 +7,34 @@ Siru is a static site generator inspired by [Hugo](https://gohugo.io/), built wi
 - Theme support
 - Live server with reload
 
+## Installation
+
+### Via APT Repository (Ubuntu/Debian)
+
+```bash
+# Add the repository
+echo "deb [trusted=yes] https://timappledotcom.github.io/siru-apt-repo/ stable main" | sudo tee /etc/apt/sources.list.d/siru.list
+
+# Update package list
+sudo apt update
+
+# Install Siru
+sudo apt install siru
+```
+
+### Via .deb Package
+
+```bash
+wget https://github.com/timappledotcom/siru/releases/download/v0.1.0/siru_0.1.0_all.deb
+sudo dpkg -i siru_0.1.0_all.deb
+```
+
+### Via Flatpak
+
+```bash
+flatpak install --user siru-0.1.0.flatpak
+```
+
 ## Usage
 
 1. **Create a new site**
